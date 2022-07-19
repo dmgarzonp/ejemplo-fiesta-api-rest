@@ -30,14 +30,15 @@ public class Persona {
 
     private int edad;
 
-    @OneToMany(mappedBy = "persona")
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private Set<Habilidad> habilidades = new HashSet<>();
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JsonBackReference
     @JoinTable(name = "personas_fiestas", 
               joinColumns = @JoinColumn(name = "persona_id", 
-              referencedColumnName = "persona_id"), inverseJoinColumns = @JoinColumn(name = "fiesta_id", referencedColumnName = "fiesta_id"))
+              referencedColumnName = "persona_id"), 
+              inverseJoinColumns = @JoinColumn(name = "fiesta_id", referencedColumnName = "fiesta_id"))
     private Set<Fiesta> fiestas = new HashSet<>();
 
     public Persona() {

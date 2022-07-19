@@ -18,11 +18,10 @@ import com.springboot.ejemplo.apirestejemplo.entidades.Persona;
 import com.springboot.ejemplo.apirestejemplo.repositorios.PersonaRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 @RestController
 @RequestMapping("/api/personas")
 public class PersonaController {
-    
+
     @Autowired
     private PersonaRepository personaRepository;
 
@@ -31,7 +30,7 @@ public class PersonaController {
 
         return new ResponseEntity<>(personaRepository.findAll(), HttpStatus.OK);
     }
-    
+
     @GetMapping("/{id}")
     public ResponseEntity<Persona> obtenerPersonaPorId(@PathVariable Long id) {
         Persona persona = personaRepository.findById(id).orElseThrow();
@@ -52,15 +51,16 @@ public class PersonaController {
         personaRepository.deleteById(id);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
-    
-    @GetMapping(value = "/{id}/fiestas")
-    public ResponseEntity<Collection<Fiesta>> ObtenerFiestasPorPersona(@RequestParam Long id) {
+
+    @GetMapping("/{id}/fiestas")
+    public ResponseEntity<Collection<Fiesta>> ObtenerFiestasPorPersona(@PathVariable long id) {
         Persona persona = personaRepository.findById(id).orElseThrow();
+
         if (persona != null) {
             return new ResponseEntity<>(persona.getFiestas(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }       
+        }
     }
-    
+
 }
