@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.springboot.ejemplo.apirestejemplo.entidades.Persona;
 
 @Repository
-public interface PersonaRepositori extends CrudRepository<Persona, Long> {
+public interface PersonaRepository extends CrudRepository<Persona, Long> {
 
     Collection<Persona> findAll();
 }
