@@ -33,6 +33,7 @@ public class Persona {
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private Set<Habilidad> habilidades = new HashSet<>();
 
+
     @ManyToMany
     @JsonBackReference
     @JoinTable(name = "personas_fiestas", 

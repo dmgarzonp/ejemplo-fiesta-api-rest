@@ -32,11 +32,12 @@ public class Fiesta {
     @JsonFormat(pattern = "YYYY-MM-dd")
     private Date fecha;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "personas_fiestas", 
                 joinColumns = @JoinColumn(name = "fiesta_id", referencedColumnName = "fiesta_id"), 
                 inverseJoinColumns = @JoinColumn(name = "persona_id", referencedColumnName = "persona_id"))
     private Set<Persona> personas = new HashSet<>();
+
 
     public Fiesta() {
     }
